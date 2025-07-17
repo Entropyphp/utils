@@ -1,6 +1,6 @@
 {
     "name": "willy68/pg-utils",
-    "description": "Utils class for PgFramework",
+    "description": "Utility classes for PHP",
     "type": "library",
     "license": "MIT",
     "autoload": {

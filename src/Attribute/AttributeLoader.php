@@ -10,8 +10,11 @@ use ReflectionMethod;
 
 class AttributeLoader
 {
-    public function __construct(private readonly AttributeReader $reader)
+    public function __construct(private ?AttributeReader $reader = null)
     {
+        if ($this->reader === null) {
+            $this->reader = new AttributeReader();
+        }
     }
 
     /**
