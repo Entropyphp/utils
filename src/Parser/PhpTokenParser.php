@@ -8,6 +8,7 @@ use function count;
 use function defined;
 use function in_array;
 use function is_array;
+use function token_get_all;
 
 use const T_CLASS;
 use const T_DOUBLE_COLON;
