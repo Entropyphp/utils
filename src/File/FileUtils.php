@@ -46,9 +46,9 @@ class FileUtils
      *
      * https://github.com/symfony/symfony/blob/6.0/src/Symfony/Component/HttpKernel/Kernel.php#method_getProjectDir
      */
-    public static function getProjectDir(): string
+    public static function getProjectDir(string $startDir = null): string
     {
-        $dir = dirname(__DIR__);
+        $dir = $startDir ?? dirname(__DIR__);
 
         while (!is_file($dir . '/composer.json')) {
             if ($dir === dirname($dir)) {
