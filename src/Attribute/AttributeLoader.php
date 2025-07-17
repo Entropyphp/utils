@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Pg\Utils\Attribute;
 
 use koriym\Attributes\AttributeReader;
+use ReflectionAttribute;
 use ReflectionClass;
+use ReflectionFunction;
 use ReflectionMethod;
 
 class AttributeLoader
@@ -69,6 +71,50 @@ class AttributeLoader
             }
         }
         return null;
+    }
+
+    /**
+     * @param ReflectionFunction $function
+     * @param string $attributeClassName
+     * @return object|null
+     *
+     * @template T of object
+     */
+    public function getFunctionAttribute(ReflectionFunction $function, string $attributeClassName): ?object
+    {
+        $attributes = $function->getAttributes($attributeClassName, ReflectionAttribute::IS_INSTANCEOF);
+        if (isset($attributes[0])) {
+            /** @var T $object */
+            $object = $attributes[0]->newInstance();
+
+            return $object;
+        }
+
+        return null;
+    }
+
+    /**
+     * Gets the attributes applied to a function.
+     *
+     * @param ReflectionFunction $function The ReflectionFunction of the Function from which
+     * the attributes should be read.
+     * @param class-string<T>|null $attributeClassName – Name of an attribute class, default to null.
+     *
+     * @return iterable|null object<T>|null An array of Attributes class T or null.
+     * @template T of object
+     */
+    public function getFunctionAttributes(ReflectionFunction $function, string $attributeClassName = null): ?iterable
+    {
+        $attributesRefs = $function->getAttributes($attributeClassName, ReflectionAttribute::IS_INSTANCEOF);
+
+        foreach ($attributesRefs as $ref) {
+            $ref = $ref->newInstance();
+            if ($ref instanceof $attributeClassName) {
+                yield $ref;
+            }
+        }
+
+        return false;
     }
 
     public function getReader(): AttributeReader

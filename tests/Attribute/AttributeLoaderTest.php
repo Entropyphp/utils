@@ -9,7 +9,11 @@ use Pg\Utils\Attribute\AttributeLoader;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionFunction;
 use ReflectionMethod;
+
+use function PgTests\Utils\Attribute\testFunctionWithAttribute;
+use function PgTests\Utils\Attribute\testFunctionWithoutAttribute;
 
 class AttributeLoaderTest extends TestCase
 {
@@ -93,6 +97,54 @@ class AttributeLoaderTest extends TestCase
     {
         $reader = $this->attributeReader->getReader();
         $this->assertInstanceOf(AttributeReader::class, $reader);
+    }
+
+    public function testGetFunctionAttributeWithExistingAttribute(): void
+    {
+        $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithAttribute');
+        $attribute = $this->attributeReader->getFunctionAttribute(
+            $reflection,
+            TestAttribute::class
+        );
+
+        $this->assertNotNull($attribute);
+        $this->assertSame('test value', $attribute->value);
+    }
+
+    public function testGetFunctionAttributeWithNonExistingAttribute(): void
+    {
+        $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithoutAttribute');
+        $attribute = $this->attributeReader->getFunctionAttribute(
+            $reflection,
+            TestAttribute::class
+        );
+
+        $this->assertNull($attribute);
+    }
+
+    public function testGetFunctionAttributesWithExistingAttributes(): void
+    {
+        $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithAttribute');
+        $attributes = iterator_to_array($this->attributeReader->getFunctionAttributes(
+            $reflection,
+            TestAttribute::class
+        ));
+
+        $this->assertCount(1, $attributes);
+        $this->assertSame('test value', $attributes[0]->value);
+    }
+
+    public function testGetFunctionAttributesWithNonExistingAttributes(): void
+    {
+        $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithoutAttribute');
+        $generator = $this->attributeReader->getFunctionAttributes(
+            $reflection,
+            TestAttribute::class
+        );
+
+        $this->assertInstanceOf(\Generator::class, $generator);
+
+        $this->assertNull($generator->current());
     }
 
     protected function setUp(): void
