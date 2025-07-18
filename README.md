@@ -111,13 +111,13 @@ if ($className) {
 Run the test suite:
 
 ```bash
-composer tests
+composer run tests
 ```
 
 Generate code coverage report:
 
 ```bash
-composer coverage
+composer run coverage
 ```
 
 ## License
