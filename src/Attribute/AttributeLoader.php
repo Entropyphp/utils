@@ -100,21 +100,19 @@ class AttributeLoader
      * the attributes should be read.
      * @param class-string<T>|null $attributeClassName – Name of an attribute class, default to null.
      *
-     * @return iterable|null object<T>|null An array of Attributes class T or null.
+     * @return array<int, object<T>> An array of Attributes class T.
      * @template T of object
      */
-    public function getFunctionAttributes(ReflectionFunction $function, string $attributeClassName = null): ?iterable
+    public function getFunctionAttributes(ReflectionFunction $function, string $attributeClassName = null): array
     {
         $attributesRefs = $function->getAttributes($attributeClassName, ReflectionAttribute::IS_INSTANCEOF);
 
+        $attributes = [];
         foreach ($attributesRefs as $ref) {
-            $ref = $ref->newInstance();
-            if ($ref instanceof $attributeClassName) {
-                yield $ref;
-            }
+            $attributes[] = $ref->newInstance();
         }
 
-        return false;
+        return $attributes;
     }
 
     public function getReader(): AttributeReader

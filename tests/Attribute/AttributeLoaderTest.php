@@ -125,10 +125,11 @@ class AttributeLoaderTest extends TestCase
     public function testGetFunctionAttributesWithExistingAttributes(): void
     {
         $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithAttribute');
-        $attributes = iterator_to_array($this->attributeReader->getFunctionAttributes(
+        $attributes = $this->attributeReader->getFunctionAttributes(
             $reflection,
             TestAttribute::class
-        ));
+        );
+
 
         $this->assertCount(1, $attributes);
         $this->assertSame('test value', $attributes[0]->value);
@@ -137,14 +138,13 @@ class AttributeLoaderTest extends TestCase
     public function testGetFunctionAttributesWithNonExistingAttributes(): void
     {
         $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithoutAttribute');
-        $generator = $this->attributeReader->getFunctionAttributes(
+        $attributes = $this->attributeReader->getFunctionAttributes(
             $reflection,
             TestAttribute::class
         );
 
-        $this->assertInstanceOf(\Generator::class, $generator);
 
-        $this->assertNull($generator->current());
+        $this->assertEmpty($attributes);
     }
 
     protected function setUp(): void
