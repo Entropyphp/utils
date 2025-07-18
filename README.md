@@ -1,5 +1,10 @@
 # PG-Utils
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D8.1-blue.svg)](https://php.net)
+[![Coverage Status](https://coveralls.io/repos/github/willy68/pg-utils/badge.svg?branch=main)](https://coveralls.io/github/willy68/pg-utils?branch=main)
+[![Continuous Integration](https://github.com/willy68/pg-utils/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/willy68/pg-utils/actions/workflows/ci.yml)
+
 Utility classes for PHP. A collection of PHP utility classes for file operations, attribute handling, and PHP code parsing.
 
 ## Requirements
