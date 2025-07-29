@@ -17,7 +17,7 @@ Utility classes for PHP. A collection of PHP utility classes for file operations
 Install via Composer:
 
 ```bash
-composer require entropyphp/pg-utils
+composer require entropyphp/utils
 ```
 
 ## Components
