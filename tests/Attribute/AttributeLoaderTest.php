@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace PgTests\Utils\Attribute;
+namespace Entropy\Tests\Utils\Attribute;
 
 use Koriym\Attributes\AttributeReader;
-use Pg\Utils\Attribute\AttributeLoader;
+use Entropy\Utils\Attribute\AttributeLoader;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionFunction;
 use ReflectionMethod;
 
-use function PgTests\Utils\Attribute\testFunctionWithAttribute;
-use function PgTests\Utils\Attribute\testFunctionWithoutAttribute;
+use function Entropy\Tests\Utils\Attribute\testFunctionWithAttribute;
+use function Entropy\Tests\Utils\Attribute\testFunctionWithoutAttribute;
 
 class AttributeLoaderTest extends TestCase
 {
@@ -101,7 +101,7 @@ class AttributeLoaderTest extends TestCase
 
     public function testGetFunctionAttributeWithExistingAttribute(): void
     {
-        $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithAttribute');
+        $reflection = new ReflectionFunction('\Entropy\Tests\Utils\Attribute\testFunctionWithAttribute');
         $attribute = $this->attributeReader->getFunctionAttribute(
             $reflection,
             TestAttribute::class
@@ -113,7 +113,7 @@ class AttributeLoaderTest extends TestCase
 
     public function testGetFunctionAttributeWithNonExistingAttribute(): void
     {
-        $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithoutAttribute');
+        $reflection = new ReflectionFunction('\Entropy\Tests\Utils\Attribute\testFunctionWithoutAttribute');
         $attribute = $this->attributeReader->getFunctionAttribute(
             $reflection,
             TestAttribute::class
@@ -124,7 +124,7 @@ class AttributeLoaderTest extends TestCase
 
     public function testGetFunctionAttributesWithExistingAttributes(): void
     {
-        $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithAttribute');
+        $reflection = new ReflectionFunction('\Entropy\Tests\Utils\Attribute\testFunctionWithAttribute');
         $attributes = $this->attributeReader->getFunctionAttributes(
             $reflection,
             TestAttribute::class
@@ -137,7 +137,7 @@ class AttributeLoaderTest extends TestCase
 
     public function testGetFunctionAttributesWithNonExistingAttributes(): void
     {
-        $reflection = new ReflectionFunction('\PgTests\Utils\Attribute\testFunctionWithoutAttribute');
+        $reflection = new ReflectionFunction('\Entropy\Tests\Utils\Attribute\testFunctionWithoutAttribute');
         $attributes = $this->attributeReader->getFunctionAttributes(
             $reflection,
             TestAttribute::class

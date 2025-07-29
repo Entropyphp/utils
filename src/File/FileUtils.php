@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Pg\Utils\File;
+namespace Entropy\Utils\File;
 
 use CallbackFilterIterator;
 use Composer\InstalledVersions;

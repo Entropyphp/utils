@@ -5,12 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Pg\\Utils\\": "src/"
+            "Entropy\\Utils\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PgTests\\Utils\\": "tests/"
+            "Entropy\\Tests\\Utils\\": "tests/"
         },
 		"files": [
 			"tests/Attribute/TestFunction.php"

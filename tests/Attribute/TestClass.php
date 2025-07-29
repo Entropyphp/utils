@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PgTests\Utils\Attribute;
+namespace Entropy\Tests\Utils\Attribute;
 
 #[TestAttribute]
 #[TestAttribute]

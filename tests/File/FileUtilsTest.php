@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PgTests\Utils\File;
+namespace Entropy\Tests\Utils\File;
 
-use Pg\Utils\File\FileUtils;
+use Entropy\Utils\File\FileUtils;
 use PHPUnit\Framework\TestCase;
 
 class FileUtilsTest extends TestCase

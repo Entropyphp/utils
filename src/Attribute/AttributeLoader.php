@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Pg\Utils\Attribute;
+namespace Entropy\Utils\Attribute;
 
 use koriym\Attributes\AttributeReader;
 use ReflectionAttribute;

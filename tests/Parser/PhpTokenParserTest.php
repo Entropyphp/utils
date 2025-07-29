@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PgTests\Utils\Parser;
+namespace Entropy\Tests\Utils\Parser;
 
-use Pg\Utils\Parser\PhpTokenParser;
+use Entropy\Utils\Parser\PhpTokenParser;
 use PHPUnit\Framework\TestCase;
 
 class PhpTokenParserTest extends TestCase
@@ -56,7 +56,7 @@ PHP;
 
 namespace TestNamespace;
 
-use Pg\Attributes\Parser\PhpTokenParser;
+use Entropy\Attributes\Parser\PhpTokenParser;
 
 $parseFunc = PhpTokenParser::findClass; 
 
