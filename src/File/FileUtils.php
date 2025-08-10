@@ -16,13 +16,17 @@ class FileUtils
     /**
      * Get all files of the given extension in the given directory.
      *
-     * @param string $path
+     * @param string $path if not exists, return an empty array
      * @param string $ext
      * @param string|null $exclude
      * @return array
      */
     public static function getFiles(string $path, string $ext = 'php', ?string $exclude = null): array
     {
+        if (!is_dir($path)) {
+            return [];
+        }
+
         // from https://stackoverflow.com/a/41636321
         return iterator_to_array(
             new CallbackFilterIterator(

@@ -17,7 +17,7 @@ class FileUtilsTest extends TestCase
         file_put_contents($dir . '/test2.txt', 'text');
         file_put_contents($dir . '/.hidden.php', '<?php');
 
-        $files = FileUtils::getFiles($dir, 'php');
+        $files = FileUtils::getFiles($dir);
         $fileNames = array_map(fn($f) => basename($f->getPathname()), $files);
 
         $this->assertContains('test1.php', $fileNames);
@@ -28,6 +28,14 @@ class FileUtilsTest extends TestCase
         unlink($dir . '/test2.txt');
         unlink($dir . '/.hidden.php');
         rmdir($dir);
+    }
+    public function testGetFilesDirectoryDoesNotExist()
+    {
+        $dir = __DIR__ . '/fixtures';
+
+        $files = FileUtils::getFiles($dir);
+
+        $this->assertEmpty($files);
     }
 
     public function testGetFilesWithExclude()
