@@ -22,7 +22,7 @@ class AttributeLoaderTest extends TestCase
 
     public function testConstructor(): void
     {
-        $attributeLoader = new AttributeLoader(new AttributeReader());
+        $attributeLoader = new AttributeLoader();
         $this->assertInstanceOf(Reader::class, $attributeLoader->getReader());
         $this->assertInstanceOf(AttributeReader::class, $attributeLoader->getReader());
     }
