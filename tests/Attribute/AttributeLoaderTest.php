@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Entropy\Tests\Utils\Attribute;
 
+use Doctrine\Common\Annotations\Reader;
 use Koriym\Attributes\AttributeReader;
 use Entropy\Utils\Attribute\AttributeLoader;
 use PHPUnit\Framework\TestCase;
@@ -18,6 +19,13 @@ use function Entropy\Tests\Utils\Attribute\testFunctionWithoutAttribute;
 class AttributeLoaderTest extends TestCase
 {
     private AttributeLoader $attributeReader;
+
+    public function testConstructor(): void
+    {
+        $attributeLoader = new AttributeLoader(new AttributeReader());
+        $this->assertInstanceOf(Reader::class, $attributeLoader->getReader());
+        $this->assertInstanceOf(AttributeReader::class, $attributeLoader->getReader());
+    }
 
     /**
      * @throws ReflectionException
