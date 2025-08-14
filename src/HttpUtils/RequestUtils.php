@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Entropy\Utils\HttpUtil;
+namespace Entropy\Utils\HttpUtils;
 
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -12,7 +12,7 @@ use function json_decode;
 use function json_last_error;
 use function preg_match;
 
-class RequestUtil
+class RequestUtils
 {
     /**
      * Not a safe function

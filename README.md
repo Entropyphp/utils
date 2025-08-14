@@ -86,6 +86,35 @@ $projectDir = FileUtils::getProjectDir(__DIR__);
 $rootPath = FileUtils::getRootPath();
 ```
 
+### RequestUtil
+
+a utility class for working with HTTP requests.
+
+#### Usage
+
+```php
+use Pg\Utils\HttpUtils\RequestUtils;
+
+// Get if the request Ajax call?
+$isAjax = RequestUtils::IsAjax($request);
+
+// Get if Request is a JSON request
+$isJson = RequestUtils::isJson($request);
+
+// Get the request body as an array if it is a JSON or std POST request, if JSON is malformed, returns an empty array
+$body = RequestUtils::getPostParams($request);
+
+// Get the request accept format, defaults to 'html' if not set, or 'json' if the request is a JSON request
+$acceptFormat = RequestUtils::getAcceptFormat($request);
+
+// Get if the request accepts JSON
+$acceptsJson = RequestUtils::wantJson($request);
+
+// Get the absolute domain URL of the request, with eventually the port number
+$url = RequestUtils::getDomain($request);
+```
+
+
 ### PhpTokenParser
 
 A utility class for parsing PHP code to extract class information.
